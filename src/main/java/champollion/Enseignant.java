@@ -1,9 +1,17 @@
 package champollion;
 
+import java.util.ArrayList;
+
 public class Enseignant extends Personne {
 
     // TODO : rajouter les autres méthodes présentes dans le diagramme UML
+    private ArrayList<UE> enseignements = new ArrayList<>();
+    private ArrayList<Integer> NbCM = new ArrayList<>();
+    private ArrayList<Integer> NbTD = new ArrayList<>();
+    private ArrayList<Integer> NbTP = new ArrayList<>();
+    private ArrayList<Intervention> interventions = new ArrayList<>();
 
+    
     public Enseignant(String nom, String email) {
         super(nom, email);
     }
@@ -18,7 +26,13 @@ public class Enseignant extends Personne {
      */
     public int heuresPrevues() {
         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        double h = 0;
+        int h2 = 0;
+        for(int i=0; i< enseignements.size();i++){
+            h = NbCM.get(i)*1.5 +NbTD.get(i) +  NbTP.get(i)*0.75 + h;
+        }
+        h2 = (int) h;
+        return h2;
     }
 
     /**
@@ -32,7 +46,15 @@ public class Enseignant extends Personne {
      */
     public int heuresPrevuesPourUE(UE ue) {
         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        double h = 0;
+        int h2 = 0;
+        for(int i=0; i< enseignements.size();i++){
+            if (ue.getIntitule().equals(enseignements.get(i).getIntitule())){
+                h = NbCM.get(i)*1.5 +NbTD.get(i) +  NbTP.get(i)*0.75 + h;
+            }
+        }
+        h2 = (int) h;
+        return h2;
     }
 
     /**
@@ -44,8 +66,28 @@ public class Enseignant extends Personne {
      * @param volumeTP le volume d'heures de TP
      */
     public void ajouteEnseignement(UE ue, int volumeCM, int volumeTD, int volumeTP) {
-        // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        enseignements.add(ue);
+        NbCM.add(volumeCM);
+        NbTP.add(volumeTP);
+        NbTD.add(volumeTD);
     }
-
+    
+    public boolean enSousService(){
+        if(this.heuresPrevues()<192){
+            return true; 
+        }else;
+            return false;
+    }
+    
+    public void ajouterIntervention(Intervention i){
+        interventions.add(i);
+    }
+    
+    public int heurePlanifiees(){
+        int h=0;
+        for (int i = 0; i< interventions.size();i++){
+            h = interventions.get(i).getDuree() +h;
+        }
+        return h;
+    }
 }

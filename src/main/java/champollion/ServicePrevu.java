@@ -2,12 +2,12 @@ package champollion;
 
 public class ServicePrevu {
 	// TODO : implémenter cette classe
-    private int volumeCM,volumeTD,volumtTP;
+    private int volumeCM,volumeTD,volumeTP;
     
     public ServicePrevu(int CM,int TD,int TP){
         this.volumeCM = CM;
         this.volumeTD = TD;
-        this.volumtTP = TP;
+        this.volumeTP = TP;
     }
 
     public int getVolumeCM() {
@@ -26,17 +26,17 @@ public class ServicePrevu {
         this.volumeTD = volumeTD;
     }
 
-    public int getVolumtTP() {
-        return volumtTP;
+    public int getVolumeTP() {
+        return volumeTP;
     }
 
-    public void setVolumtTP(int volumtTP) {
-        this.volumtTP = volumtTP;
+    public void setVolumtTP(int volumeTP) {
+        this.volumeTP = volumeTP;
     }
 
     @Override
     public String toString() {
-        return "ServicePrevu{" + "volumeCM=" + volumeCM + ", volumeTD=" + volumeTD + ", volumtTP=" + volumtTP + '}';
+        return "ServicePrevu{" + "volumeCM=" + volumeCM + ", volumeTD=" + volumeTD + ", volumeTP=" + volumeTP + '}';
     }
     
 }

@@ -83,6 +83,10 @@ public class Enseignant extends Personne {
         interventions.add(i);
     }
     
+    public void annulerIntervention(Intervention i){
+        interventions.remove(i);
+    }
+    
     public int heurePlanifiees(){
         int h=0;
         for (int i = 0; i< interventions.size();i++){

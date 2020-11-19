@@ -6,9 +6,7 @@ public class Enseignant extends Personne {
 
     // TODO : rajouter les autres méthodes présentes dans le diagramme UML
     private ArrayList<UE> enseignements = new ArrayList<>();
-    private ArrayList<Integer> NbCM = new ArrayList<>();
-    private ArrayList<Integer> NbTD = new ArrayList<>();
-    private ArrayList<Integer> NbTP = new ArrayList<>();
+    private ArrayList<ServicePrevu> SP = new ArrayList<>();
     private ArrayList<Intervention> interventions = new ArrayList<>();
 
     
@@ -29,8 +27,8 @@ public class Enseignant extends Personne {
         double h = 0;
         int h2 = 0;
         for(int i=0; i< enseignements.size();i++){
-            h = NbCM.get(i)*1.5 +NbTD.get(i) +  NbTP.get(i)*0.75 + h;
-        }
+                h = h + SP.get(i).getVolumeCM()*1.5+SP.get(i).getVolumeTD()+SP.get(i).getVolumeTP()*0.75;
+            }        
         h2 = (int) h;
         return h2;
     }
@@ -50,9 +48,9 @@ public class Enseignant extends Personne {
         int h2 = 0;
         for(int i=0; i< enseignements.size();i++){
             if (ue.getIntitule().equals(enseignements.get(i).getIntitule())){
-                h = NbCM.get(i)*1.5 +NbTD.get(i) +  NbTP.get(i)*0.75 + h;
+                h = h + SP.get(i).getVolumeCM()*1.5+SP.get(i).getVolumeTD()+SP.get(i).getVolumeTP()*0.75;
             }
-        }
+            }
         h2 = (int) h;
         return h2;
     }
@@ -67,9 +65,8 @@ public class Enseignant extends Personne {
      */
     public void ajouteEnseignement(UE ue, int volumeCM, int volumeTD, int volumeTP) {
         enseignements.add(ue);
-        NbCM.add(volumeCM);
-        NbTP.add(volumeTP);
-        NbTD.add(volumeTD);
+        ServicePrevu s = new ServicePrevu(volumeCM,volumeTD,volumeTP);
+        SP.add(s);
     }
     public void retirerEnseignement(UE ue){
         enseignements.remove(ue); 
@@ -96,5 +93,23 @@ public class Enseignant extends Personne {
             h = interventions.get(i).getDuree() +h;
         }
         return h;
+    }
+    public boolean comparerHeures(){
+        int h=0;
+        int h2=0;
+        boolean b = true;
+        for(int i = 0; i< interventions.size();i++){
+            for(int j = 0; j< SP.size();j++){
+                h = interventions.get(i).getDuree()+h;
+                h2 = SP.get(i).somme();
+                if(h == h2){
+                    b = true;
+                    System.out.println("Toutes les heures plannifiées ont été réalisées.");
+                }else;
+                    b=false;
+                    System.out.println("Toutes les heures plannifiées n'ont pas été réalisées.");
+            }
+        }
+        return b;
     }
 }

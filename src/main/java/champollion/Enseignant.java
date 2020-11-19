@@ -71,6 +71,9 @@ public class Enseignant extends Personne {
         NbTP.add(volumeTP);
         NbTD.add(volumeTD);
     }
+    public void retirerEnseignement(UE ue){
+        enseignements.remove(ue); 
+    }
     
     public boolean enSousService(){
         if(this.heuresPrevues()<=192){

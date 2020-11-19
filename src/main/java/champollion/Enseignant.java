@@ -73,7 +73,7 @@ public class Enseignant extends Personne {
     }
     
     public boolean enSousService(){
-        if(this.heuresPrevues()<192){
+        if(this.heuresPrevues()<=192){
             return true; 
         }else;
             return false;

@@ -33,6 +33,12 @@ public class ServicePrevu {
     public void setVolumtTP(int volumeTP) {
         this.volumeTP = volumeTP;
     }
+    
+    public int somme(){
+        int i = 0;
+        i= this.volumeCM+this.volumeTD+this.volumeTP;
+        return i;
+    }
 
     @Override
     public String toString() {

@@ -45,5 +45,10 @@ public class Intervention {
     public void setAnnulee(boolean annulee) {
         this.annulee = annulee;
     }
-    
+    public void annulerIntervention(Intervention i,Enseignant e){
+        i.setAnnulee(true);
+        i.setDebut(null);
+        i.setDuree(0);
+        e.annulerIntervention(i);
+    }
 }

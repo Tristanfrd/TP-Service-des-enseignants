@@ -40,18 +40,22 @@ public class ChampollionJUnitTest {
 		assertEquals(10 + 20, untel.heuresPrevuesPourUE(uml),
                          "L'enseignant doit maintenant avoir 30 heures prévues pour l'UE 'uml'");		
 		
-                // 10h de CM = 15h de TD
+                // 10h de CM = 15h de TD uml
                 untel.ajouteEnseignement(uml, 10, 0, 0);
                 
 		assertEquals(30+15, untel.heuresPrevuesPourUE(uml),
                          "L'enseignant doit maintenant avoir 45 heures prévues pour l'UE 'uml'");		
                 
-                // 20h de TP = 15h de TD
+                // 20h de TP = 15h de TD uml
                 untel.ajouteEnseignement(uml, 0, 0, 20);
                 
 		assertEquals(45+15, untel.heuresPrevuesPourUE(uml),
                          "L'enseignant doit maintenant avoir 60 heures prévues pour l'UE 'uml'");		
-	}
+                
+                // 20 h de TD pour java
+                untel.ajouteEnseignement(java, 0, 20, 0);
+                assertEquals(60+20, untel.heuresPrevues(),"L'enseignant devrait avoir 80h de cours.");
+        }
         
         
         @Test

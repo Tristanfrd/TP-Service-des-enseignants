@@ -62,6 +62,8 @@ public class ChampollionJUnitTest {
         public void testSousService(){
             untel.ajouteEnseignement(uml, 10, 10, 10);
             assertTrue(untel.enSousService(),"L'enseignant devrait être en sous-service.");
+            untel.ajouteEnseignement(uml, 110, 120, 130);
+            assertFalse(untel.enSousService(),"L'enseignant n'est pas en sous-service");
         }
 	@Test
         public void testHeurePlannifiée(){
